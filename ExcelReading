@@ -1,0 +1,32 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelReeding {
+	public static void main(String[] args) {
+		
+		
+		try(XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream("excel.xlsx"))) {
+			
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			XSSFRow	row = sheet.getRow(4);
+			System.out.print(row.getCell(1).getStringCellValue() + ":\t");
+			for (int i=2; i<7; i++){
+				System.out.print(row.getCell(i).getNumericCellValue() + "\t");
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+}
