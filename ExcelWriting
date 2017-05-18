@@ -1,0 +1,31 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelWriting {
+	public static void main(String[] args) {
+
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("testSheet");
+		XSSFRow row = sheet.createRow(0);
+		XSSFCell cell = row.createCell(0);
+		cell.setCellValue("LeBron James");
+
+		try {
+			workbook.write(new FileOutputStream("excel.xlsx"));
+		} catch (IOException e) {
+			System.out.println("IOException");
+		}
+
+		try {
+			workbook.close();
+		} catch (IOException e) {
+			System.out.println("IOException");
+		}
+
+	}
+}
